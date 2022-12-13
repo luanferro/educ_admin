@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>569941663703-vk69ikn7n5o13e4f942rvf3qorkbgj12.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.569941663703-vk69ikn7n5o13e4f942rvf3qorkbgj12</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDaM0UnKVRzUzngXNUSd50chedxDX_fwXE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>569941663703</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.educAdmin</string>
+	<key>PROJECT_ID</key>
+	<string>educ-28543</string>
+	<key>STORAGE_BUCKET</key>
+	<string>educ-28543.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:569941663703:ios:e9a94de2627da649c67592</string>
+	<key>DATABASE_URL</key>
+	<string>https://educ-28543-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
