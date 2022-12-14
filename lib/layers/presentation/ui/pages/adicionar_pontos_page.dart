@@ -84,7 +84,7 @@ class _AdicionarPontosPageState extends State<AdicionarPontosPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Adicionar Pontos",
+                  Text("Gerenciar Pontos",
                       style: const TextStyle(
                           color: Colors.white,
                           fontSize: 30,
@@ -163,9 +163,7 @@ class _AdicionarPontosPageState extends State<AdicionarPontosPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
-                                width: MediaQuery.of(context).size.width * 0.35,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.07,
+                                width: MediaQuery.of(context).size.width * 0.4,
                                 margin: const EdgeInsets.only(top: 10),
                                 decoration: BoxDecoration(
                                     color: Colors.grey[100],
@@ -198,6 +196,7 @@ class _AdicionarPontosPageState extends State<AdicionarPontosPage> {
                                 ),
                               ),
                               Container(
+                                width: MediaQuery.of(context).size.width * 0.4,
                                 margin: const EdgeInsets.only(top: 10),
                                 decoration: BoxDecoration(
                                     color: Colors.grey[100],

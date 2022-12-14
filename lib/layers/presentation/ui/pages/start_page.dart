@@ -5,7 +5,7 @@ import 'package:educ_admin/layers/presentation/ui/pages/adicionar_pontos_page.da
 import 'package:educ_admin/layers/presentation/ui/pages/adicionar_punicoes_page.dart';
 import 'package:educ_admin/layers/presentation/ui/pages/classificacao_page.dart';
 import 'package:educ_admin/layers/presentation/ui/pages/home_page.dart';
-import 'package:educ_admin/layers/presentation/ui/pages/nota_page.dart';
+import 'package:educ_admin/layers/presentation/ui/pages/alunos_page.dart';
 import 'package:educ_admin/layers/presentation/ui/pages/perfil_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -26,7 +26,7 @@ class _StartPageState extends State<StartPage> {
   @override
   void initState() {
     super.initState();
-    controllerNota.buscarNotasUseCase(controllerUsuario.usuario ?? '');
+    _reloadFotoPerfil();
   }
 
   @override
@@ -45,9 +45,8 @@ class _StartPageState extends State<StartPage> {
         children: const [
           HomePage(),
           PerfilPage(),
-          HomePage(),
           ClassificacaoPage(),
-          NotaPage()
+          AlunosPage()
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -109,11 +108,11 @@ class _StartPageState extends State<StartPage> {
           animation: pageViewController,
           builder: (context, snapshot) {
             return BottomNavigationBar(
-              currentIndex: pageViewController.page?.round() ?? 2,
+              currentIndex: pageViewController.page?.round() ?? 0,
               onTap: (index) {
                 pageViewController.jumpToPage(index);
-                if (index == 1) {
-                  controller.buscarPontos(controllerUsuario.usuario ?? '');
+                if (index == 0) {
+                  setState(() {});
                 }
               },
               type: BottomNavigationBarType.fixed,
@@ -128,12 +127,6 @@ class _StartPageState extends State<StartPage> {
                   label: 'Perfil',
                 ),
                 BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.block,
-                      color: Colors.transparent,
-                    ),
-                    label: ''),
-                BottomNavigationBarItem(
                   icon: Icon(Icons.leaderboard),
                   label: 'Classificação',
                 ),
@@ -145,5 +138,17 @@ class _StartPageState extends State<StartPage> {
             );
           }),
     );
+  }
+
+  void _reloadFotoPerfil() async {
+    await controller
+        .buscarAdminUseCase(controller.administrador?.usuario ?? '');
+    var newPath = await Future.delayed(
+        const Duration(seconds: 0),
+        () => controller
+            .buscarImagemStorage(controller.administrador?.fotoPerfil ?? ''));
+    setState(() {
+      controller.pathImage = newPath;
+    });
   }
 }

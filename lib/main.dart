@@ -1,4 +1,5 @@
 import 'package:educ_admin/core/inject/inject.dart';
+import 'package:educ_admin/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,8 +9,7 @@ import 'layers/presentation/ui/pages/splash_page.dart';
 void main() async {
   Inject.init();
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
       overlays: [SystemUiOverlay.bottom]);

@@ -34,8 +34,8 @@ class _HomePageState extends State<HomePage> {
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => const StartPage()));
       });
-      _reloadFotoPerfil();
     }
+    _reloadFotoPerfil();
   }
 
   @override
@@ -46,6 +46,7 @@ class _HomePageState extends State<HomePage> {
     var largura = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SizedBox(
         height: altura,
         width: largura,
@@ -455,8 +456,10 @@ class _HomePageState extends State<HomePage> {
         const Duration(seconds: 0),
         () => controller
             .buscarImagemStorage(controller.administrador?.fotoPerfil ?? ''));
-    // setState(() {
-    //   controller.pathImage = newPath;
-    // });
+    if (mounted) {
+      setState(() {
+        controller.pathImage = newPath;
+      });
+    }
   }
 }

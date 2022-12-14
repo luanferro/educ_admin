@@ -37,7 +37,6 @@ class _PerfilPageState extends State<PerfilPage> {
     super.initState();
 
     _reloadFotoPerfil();
-    controller.buscarPontos(controllerUsuario.usuario ?? '');
   }
 
   @override
@@ -160,7 +159,7 @@ class _PerfilPageState extends State<PerfilPage> {
                                                   fontSize: 12),
                                             ),
                                             Text(
-                                              "0",
+                                              pegarQntdPunicoes(),
                                               style: TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 20),
@@ -255,8 +254,22 @@ class _PerfilPageState extends State<PerfilPage> {
         const Duration(seconds: 0),
         () => controller
             .buscarImagemStorage(controller.administrador?.fotoPerfil ?? ''));
-    setState(() {
-      controller.pathImage = newPath;
-    });
+    if (this.mounted) {
+      setState(() {
+        controller.pathImage = newPath;
+      });
+    }
+  }
+
+  String pegarQntdPunicoes() {
+    int punicoesDadas = 0;
+
+    for (var punicoes in controller.punicoes) {
+      if (punicoes.professor == controllerUsuario.usuario) {
+        punicoesDadas += 1;
+      }
+    }
+
+    return punicoesDadas.toString();
   }
 }

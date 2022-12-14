@@ -1,10 +1,14 @@
 import 'package:educ_admin/layers/data/datasources/adicionar_pontos_datasource.dart';
 import 'package:educ_admin/layers/data/datasources/buscar_aluno_datasource.dart';
 import 'package:educ_admin/layers/data/datasources/buscar_notas_datasource.dart';
+import 'package:educ_admin/layers/data/datasources/buscar_punicoes_datasource.dart';
 import 'package:educ_admin/layers/data/datasources/buscar_usuario_datasource.dart';
+import 'package:educ_admin/layers/data/datasources/cadastrar_punicao_datasource.dart';
 import 'package:educ_admin/layers/data/datasources/firebase/adicionar_pontos_datasource_imp.dart';
+import 'package:educ_admin/layers/data/datasources/firebase/adicionar_punicao_datasource_imp.dart';
 import 'package:educ_admin/layers/data/datasources/firebase/buscar_aluno_datasource_imp.dart';
 import 'package:educ_admin/layers/data/datasources/firebase/buscar_notas_datasource_imp.dart';
+import 'package:educ_admin/layers/data/datasources/firebase/buscar_punicoes_datasource_imp.dart';
 import 'package:educ_admin/layers/data/datasources/firebase/buscar_usuario_datasource_imp.dart';
 import 'package:educ_admin/layers/data/datasources/firebase/login_datasource_imp.dart';
 import 'package:educ_admin/layers/data/datasources/login_datasource.dart';
@@ -16,6 +20,8 @@ import 'package:educ_admin/layers/domain/repositories/nota_repository.dart';
 import 'package:educ_admin/layers/domain/repositories/usuario_repository.dart';
 import 'package:educ_admin/layers/domain/usecases/adicionar_pontos/adicionar_pontos_usecase.dart';
 import 'package:educ_admin/layers/domain/usecases/adicionar_pontos/adicionar_pontos_usecase_imp.dart';
+import 'package:educ_admin/layers/domain/usecases/adicionar_punicao/adicionar_punicao_usecase.dart';
+import 'package:educ_admin/layers/domain/usecases/adicionar_punicao/adicionar_punicao_usecase_imp.dart';
 import 'package:educ_admin/layers/domain/usecases/buscar_admin/buscar_admin_usecase.dart';
 import 'package:educ_admin/layers/domain/usecases/buscar_admin/buscar_admin_usecase_imp.dart';
 import 'package:educ_admin/layers/domain/usecases/buscar_alunos/buscar_alunos_usecase.dart';
@@ -24,6 +30,8 @@ import 'package:educ_admin/layers/domain/usecases/buscar_foto_perfil/buscar_foto
 import 'package:educ_admin/layers/domain/usecases/buscar_foto_perfil/buscar_foto_perfil_usecase_imp.dart';
 import 'package:educ_admin/layers/domain/usecases/buscar_notas/buscar_notas_usecase.dart';
 import 'package:educ_admin/layers/domain/usecases/buscar_notas/buscar_notas_usecase_imp.dart';
+import 'package:educ_admin/layers/domain/usecases/buscar_punicoes/buscar_punicoes_usecase.dart';
+import 'package:educ_admin/layers/domain/usecases/buscar_punicoes/buscar_punicoes_usecase_imp.dart';
 import 'package:educ_admin/layers/domain/usecases/buscar_usuario/buscar_usuario_usecase.dart';
 import 'package:educ_admin/layers/domain/usecases/buscar_usuario/buscar_usuario_usecase_imp.dart';
 import 'package:educ_admin/layers/domain/usecases/login/login_usecase.dart';
@@ -41,7 +49,6 @@ class Inject {
     GetIt getIt = GetIt.instance;
 
     //datasources
-
     getIt.registerLazySingleton<LoginDataSource>(() => LoginDataSourceImp());
 
     getIt.registerLazySingleton<BuscarNotasDataSource>(
@@ -49,6 +56,9 @@ class Inject {
 
     getIt.registerLazySingleton<AdicionarPontosDataSource>(
         () => AdicionarPontosDataSourceImp());
+
+    getIt.registerLazySingleton<AdicionarPunicaoDataSource>(
+        () => AdicionarPunicaoDataSourceImp());
 
     getIt.registerLazySingleton<BuscarUsuarioDataSource>(
         () => BuscarUsuarioDataSourceImp());
@@ -59,12 +69,15 @@ class Inject {
     getIt.registerLazySingleton<BuscarAlunosDataSource>(
         () => BuscarAlunosDataSourceImp());
 
+    getIt.registerLazySingleton<BuscarPunicoesDataSource>(
+        () => BuscarPunicoesDataSourceImp());
+
     //repositories
     getIt.registerLazySingleton<UsuarioRepository>(
         () => UsuarioRepositoryImp(getIt(), getIt()));
 
     getIt.registerLazySingleton<AlunoRepository>(
-        () => AlunoRepositoryImp(getIt(), getIt(), getIt()));
+        () => AlunoRepositoryImp(getIt(), getIt(), getIt(), getIt(), getIt()));
 
     getIt.registerLazySingleton<NotaRepository>(
         () => NotaRepositoryImp(getIt()));
@@ -86,14 +99,20 @@ class Inject {
     getIt.registerLazySingleton<BuscarFotoPerfilUseCase>(
         () => BuscarFotoPerfilUseCaseImp(getIt()));
 
+    getIt.registerLazySingleton<BuscarPunicoesUseCase>(
+        () => BuscarPunicoesUseCaseImp(getIt()));
+
     getIt.registerLazySingleton<AdicionarPontosUseCase>(
         () => AdicionarPontosUseCaseImp(getIt()));
+
+    getIt.registerLazySingleton<AdicionarPunicaoUseCase>(
+        () => AdicionarPunicaoUseCaseImp(getIt()));
     //controllers
     getIt.registerLazySingleton<UsuarioController>(
         () => UsuarioController(getIt(), getIt()));
 
-    getIt.registerLazySingleton<AlunoController>(
-        () => AlunoController(getIt(), getIt(), getIt(), getIt()));
+    getIt.registerLazySingleton<AlunoController>(() =>
+        AlunoController(getIt(), getIt(), getIt(), getIt(), getIt(), getIt()));
 
     getIt.registerLazySingleton<NotaController>(() => NotaController(getIt()));
   }
